@@ -2,10 +2,16 @@
    0-indexed BIT (Binary Indexed Tree)
 **/
 
-template<class T, int MAX_N> class BIT {
- public:
-    int size = MAX_N;
-    T bit[MAX_V + 1];
+template<class T> class BIT {
+  public:
+    vector<T> bit;
+    int size;
+
+    BIT() {}
+    BIT(int n, T v = 0) {
+        size = n;
+        bit.resize(n + 1, v);
+    }
 
     T sum(int i) {
         i++;
