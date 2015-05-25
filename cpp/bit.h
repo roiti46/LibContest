@@ -10,9 +10,10 @@ template<class T> class BIT {
     BIT() {}
     BIT(int n, T v = 0) {
         size = n;
-        bit.resize(n + 1, v);
+        bit.resize(size + 1, v);
     }
 
+    // sum [0, i)
     T sum(int i) {
         i++;
         T s = 0;
@@ -21,6 +22,11 @@ template<class T> class BIT {
             i -= i & -i;
         }
         return s;
+    }
+
+    // sum [i, j)
+    T sum(int i, int j) {
+        return sum(j) - sum(i);
     }
 
     void add(int i, T x) {
