@@ -15,7 +15,6 @@ template<class T> class BIT {
 
     // sum [0, i)
     T sum(int i) {
-        i++;
         T s = 0;
         while (i > 0) {
             s += bit[i];
