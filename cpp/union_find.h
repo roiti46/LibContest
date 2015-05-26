@@ -1,5 +1,7 @@
 /**
-   あり本準拠のunion-find
+   あり本準拠のUnion-Find
+
+   Verified: AOJ DSL_1_A
 **/
 class UnionFind {
  public:

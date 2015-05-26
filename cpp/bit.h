@@ -1,5 +1,8 @@
+
 /**
    0-indexed BIT (Binary Indexed Tree)
+
+   Verified: AOJ DSL_2_B
 **/
 
 template<class T> class BIT {

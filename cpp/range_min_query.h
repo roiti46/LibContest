@@ -1,6 +1,7 @@
 /**
-   Segment TreeによるRMQ実装
-   蟻本準拠です(0-indexed)
+   0-indexed Segment TreeによるRMR.
+
+   Verified: AOJ DSL_2_A
 **/
 template<class T> class RangeMinQuery {
  public:
