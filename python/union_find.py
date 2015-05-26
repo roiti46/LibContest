@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 """
 蟻本準拠のUnionFind
+
+Verified: AOJ DSL_1_A
 """
 
 class UnionFind:
@@ -30,4 +32,3 @@ class UnionFind:
 
     def group_num(self):
         return self.g_num
-

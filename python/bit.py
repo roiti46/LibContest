@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 """
 0-indexed BIT (Binary Indexed Tree)
+
+Verified: AOJ DSL_2_B
 """
 
 class BIT:
@@ -10,7 +12,6 @@ class BIT:
 
     # sum [0, i)
     def sum(self, i):
-        i += 1
         s = 0
         while (i > 0):
             s += self.bit[i]
@@ -19,7 +20,7 @@ class BIT:
 
     # sum [i, j)
     def sum_sec(self, i, j):
-        return self.sum(j) - self.sum(j)
+        return self.sum(j) - self.sum(i)
 
     def add(self, i, x):
         i += 1
