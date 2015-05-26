@@ -10,7 +10,7 @@ int lcm(int a, int b) {
 }
 
 
-//
+//pow and pow_mod
 ll pow(int a, int p) {
     ll res = 1;
     while (p) {
@@ -33,12 +33,12 @@ ll pow_mod(int a, int p, int mod) {
 
 
 
-bool isprime(int x) {
-    if (x < 2) return false;
-    if (x == 2) return true;
-    if (x % 2 == 0) return false;
-    for (int i = 3; i * i <= x; i += 2)
-        if (x % i == 0) return false;
+bool isprime(int n) {
+    if (n < 2) return false;
+    if (n == 2) return true;
+    if (n % 2 == 0) return false;
+    for (int i = 3; i * i <= n; i += 2)
+        if (n % i == 0) return false;
     return true;
 }
 
@@ -54,17 +54,17 @@ vector<int> prime_sieve(int n) {
 }
 
 
-vector<pair<int, int>> prime_factorize(int x) {
+vector<pair<int, int>> prime_factorize(int n) {
     vector<pair<int, int>> res;
-    for (int i = 2; i * i <= x; i++) {
+    for (int i = 2; i * i <= n; i++) {
         int cnt = 0;
         while (n % i == 0) {
             n /= i;
             cnt++;
         }
-        if (cnt > 0) res.push_back(make_paier(i, cnt));
+        if (cnt > 0) res.push_back(make_pair(i, cnt));
     }
-    if (x > 1) res.push_back(make_pair(x, 1));
+    if (n > 1) res.push_back(make_pair(n, 1));
     return res;
 }
 
