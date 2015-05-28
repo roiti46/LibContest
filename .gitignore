@@ -1,4 +1,8 @@
 *~
 *.out
 *.exe
+<<<<<<< HEAD
 TODO/
+=======
+./TODO
+>>>>>>> 3d8beabf5fbd120b887fae5394eaf74f700cd13c
