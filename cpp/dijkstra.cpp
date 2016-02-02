@@ -2,7 +2,7 @@
 // !set inf to suit for the cost_type
 // O(|V|^2)
 template<T>
-vector<T> dijkstra(vector<vector<T>> &G, int s) {
+vector<T> dijkstra(const vector<vector<T>> &G, int s) {
   const T inf = (T)1e9;
   int V = G.size();
   vector<T> d(V, inf);
@@ -30,7 +30,7 @@ vector<T> dijkstra(vector<vector<T>> &G, int s) {
 typedef cost_type int // !set inf to suit for the cost_type
 struct edge { int to; cost_type cost; };
 
-vector<cost_type> dijkstra(vector<vector<edge>> &G, int s) {
+vector<cost_type> dijkstra(const vector<vector<edge>> &G, int s) {
   const cost_type inf = (cost_type)1e9;
   int V = G.size();
   typedef pair<cost_type, int> P;
