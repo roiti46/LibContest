@@ -1,4 +1,3 @@
-// You need to set V_SIZE, E_SIZE, E_MAX
 // O(|V||E|)
 template<class T>
 struct BellmanFord {
@@ -11,8 +10,8 @@ struct BellmanFord {
   void add(int from, int to, T cost) {
     es.push_back(edge{from, to, cost});
   }
-  vector<int> exec(int s) {
-    vector<int> d(V, inf);
+  vector<T> exec(int s) {
+    vector<T> d(V, inf);
     d[s] = 0;
     while (1) {
       bool update = false;
@@ -28,7 +27,7 @@ struct BellmanFord {
     return d;
   }
   bool find_negative_loop() {
-    vector<int> d(V, 0);
+    vector<T> d(V, 0);
     for (int i = 0; i < V; i++) {
       for (int j = 0; j < es.size(); j++) {
         edge e = es[j];

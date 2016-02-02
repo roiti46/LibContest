@@ -1,8 +1,8 @@
 // dijkstra not work for graph has negative edge
 // !set inf to suit for the cost_type
 // O(|V|^2)
-template<T>
-vector<T> dijkstra(const vector<vector<T>> &G, int s) {
+template<typename T>
+vector<T> dijkstra(const Graph<T> &G, int s) {
   const T inf = (T)1e9;
   int V = G.size();
   vector<T> d(V, inf);
@@ -27,15 +27,16 @@ vector<T> dijkstra(const vector<vector<T>> &G, int s) {
 }
 
 // O(|E|log(|V|))
-typedef cost_type int // !set inf to suit for the cost_type
-struct edge { int to; cost_type cost; };
+template<typename T>
+struct edge { int to; T cost; };
 
-vector<cost_type> dijkstra(const vector<vector<edge>> &G, int s) {
-  const cost_type inf = (cost_type)1e9;
+template<class T>
+vector<T> dijkstra(const Graph<edge<T>> &G, int s) {
+  const T inf = (T)1e9;
   int V = G.size();
-  typedef pair<cost_type, int> P;
+  typedef pair<T, int> P;
   priority_queue<P, vector<P>, greater<P>> que;
-  vector<cost_type> d(V, inf);
+  vector<T> d(V, inf);
   // fill(prev, prev + V, -1);
   d[s] = 0;
   que.push(P(0, s));
@@ -45,7 +46,7 @@ vector<cost_type> dijkstra(const vector<vector<edge>> &G, int s) {
     int v = p.second;
     if (d[v] < p.first) continue;
     for (int i = 0; i < G[v].size(); i++) {
-      edge e = G[v][i];
+      edge<T> e = G[v][i];
       if (d[e.to] > d[v] + e.cost) {
         d[e.to] = d[v] + e.cost;
         que.push(P(d[e.to], e.to));

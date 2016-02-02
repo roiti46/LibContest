@@ -1,6 +1,6 @@
 // G is adjacency matrix
 // O(|V| + |E|)
-bool bipart_dfs(const vector<vector<int>> &G, vector<int> &color, int v, int c) {
+bool bipart_dfs(const Graph<int> &G, vector<int> &color, int v, int c) {
   color[v] = c;
   for (int i = 0; i < G[v].size(); i++) {
     if (color[G[v][i]] == c) return false;
