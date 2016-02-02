@@ -9,7 +9,7 @@ struct Kruscal {
 
   Kruscal(int V_) : V(V_){};
   void add(int u, int v, T cost) {
-    es.push_back(edge(u, v, cost));
+    es.push_back(edge{u, v, cost});
   }
   bool edge_comp(const edge &e1, const edge &e2) {
     return e1.cost < e2.cost;

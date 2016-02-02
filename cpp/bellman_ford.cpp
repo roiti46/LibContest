@@ -1,37 +1,43 @@
 // You need to set V_SIZE, E_SIZE, E_MAX
 // O(|V||E|)
-struct edge { int from, to, cost; }
-edge es[E_MAX];
-
-vector<int> bellman_ford(int s) {
-  const int inf = (int)1e9;
-  vector<int> d(V_SIZE, inf);
-  d[s] = 0;
-  while (1) {
-    bool update = false;
-    for (int i = 0; i < E_SIZE; i++) {
-      edge e = es[i];
-      if (d[e.from] != inf && d[e.to] > d[e.from] + e.cost) {
-        d[e.to] = d[e.from] + e.cost;
-        update = false;
+template<class T>
+struct BellmanFord {
+  const T inf = (T)1e9; // You may need to change inf!!!
+  int V; // number of vertex
+  struct edge { int from, to; T cost; };
+  vector<edge> es;
+  
+  BellmanFord(int V_) : V(V_) {}
+  void add(int from, int to, T cost) {
+    es.push_back(edge{from, to, cost});
+  }
+  vector<int> exec(int s) {
+    vector<int> d(V, inf);
+    d[s] = 0;
+    while (1) {
+      bool update = false;
+      for (int i = 0; i < es.size(); i++) {
+        edge e = es[i];
+        if (d[e.from] != inf && d[e.to] > d[e.from] + e.cost) {
+          d[e.to] = d[e.from] + e.cost;
+          update = false;
+        }
+      }
+      if (!update) break;
+    }
+    return d;
+  }
+  bool find_negative_loop() {
+    vector<int> d(V, 0);
+    for (int i = 0; i < V; i++) {
+      for (int j = 0; j < es.size(); j++) {
+        edge e = es[j];
+        if (d[e.to] > d[e.from] + e.cost) {
+          d[e.to] = d[e.from] + e.cost;
+          if (i == V - 1) return true;
+        }
       }
     }
-    if (!update) break;
+    return false;
   }
-  return d;
-}
-
-// O(|V||E|)
-bool find_negative_loop() {
-  vector<int> d(V_SIZE, 0);
-  for (int i = 0; i < V_SIZE; i++) {
-    for (int j = 0; j < E_SIZE; j++) {
-      edge e = es[j];
-      if (d[e.to] > d[e.from] + e.cost) {
-        d[e.to] = d[e.from] + e.cost;
-        if (i == V_SIZE - 1) return true;
-      }
-    }
-  }
-  return false;
-}
+};
