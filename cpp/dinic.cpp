@@ -4,42 +4,30 @@
 
   Verified: yukicoder No.177
 **/
-
-#include <vector>
-#include <numeric>
-#include <queue>
-
+// O(|E||V|^2)
 template <class T>
-class MaxFlowDinic {
- public:
+struct Dinic {
   // you may need to change INF
   static const T INF = 2147483647; //INT_MAX
   int V;
-  struct edge {
-    int to, rev;
-    T cap;
-  };
+  struct edge { int to, rev; T cap; };
   vector<vector<edge>> G;
   vector<int> level;
   vector<int> iter;
 
-  MaxFlowDinic() {};
-  MaxFlowDinic(int v) {
-    V = v;
+  Dinic(int V_) {
+    V = V_;
     G.resize(V); level.resize(V); iter.resize(V);
     for (int i = 0; i < V; i++) G[i].clear();
   }
-
   void add(int from, int to, T cap) {
     G[from].push_back(edge{to, (int)G[to].size(), cap});
     G[to].push_back(edge{from, (int)G[from].size() - 1, 0});
   }
-
   void add_dual(int from, int to, T cap) {
     G[from].push_back(edge{to, (int)G[to].size(), cap});
     G[to].push_back(edge{from, (int)G[from].size() - 1, cap});
   }
-
   void bfs(int s) {
     fill(level.begin(), level.end(), -1);
     queue<int> que;
@@ -56,7 +44,6 @@ class MaxFlowDinic {
       }
     }
   }
-
   T dfs(int v, int t, T f) {
     if (v == t) return f;
     for (int &i = iter[v]; i < G[v].size(); i++) {
@@ -72,8 +59,6 @@ class MaxFlowDinic {
     }
     return 0;
   }
-
-
   T max_flow(int s, int t) {
     T flow = 0;
     while (1) {
@@ -87,3 +72,4 @@ class MaxFlowDinic {
     }
   }
 };
+

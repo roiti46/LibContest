@@ -3,19 +3,18 @@
 
    Verified: AOJ DSL_2_A
 **/
-template<class T> class RangeMinQuery {
- public:
-  vector<T> dat;
-  int n;
+
+// init O(N), query(defult: min) log(N), update log(N)
+template<class T> struct SegmentTree {
   // you may need to change MAX!
   static T const MAX = 2147483647; //INT_MAX
-  RangeMinQuery() {}
-  RangeMinQuery(int N) {
+  vector<T> dat;
+  int n;
+  SegmentTree(int N) {
     n = 1;
     while (n < N) n *= 2;
     dat.resize(2 * n - 1, MAX);
   };
-
   void update(int k, T x) {
     k += n - 1;
     dat[k] = x;
@@ -24,12 +23,10 @@ template<class T> class RangeMinQuery {
       dat[k] = min(dat[2 * k + 1], dat[2 * k + 2]);
     }
   }
-
   // get minimum val [a, b)
   T query(int a, int b) {
     return query(a, b, 0, 0, n);
   }
-
   T query(int a, int b, int k, int l, int r) {
     if (r <= a || b <= l) return MAX;
     if (a <= l && r <= b) return dat[k];
